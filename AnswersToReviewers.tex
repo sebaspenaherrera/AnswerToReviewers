@@ -1,0 +1,398 @@
+\newcommand{\CLASSINPUTinnersidemargin}{18mm}
+\newcommand{\CLASSINPUToutersidemargin}{12mm}
+\newcommand{\CLASSINPUTtoptextmargin}{20mm}
+\newcommand{\CLASSINPUTbottomtextmargin}{25mm}
+
+
+
+\hyphenation{tele-communi-ca-tions}
+
+\documentclass[journal,12pt,onecolumn]{IEEEtran}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------
+\input{IEEE_PAPER_PACKAGES.tex}
+
+
+
+\usepackage[T1]{fontenc}% optional T1 font encoding
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500
+% https://tex.stackexchange.com/questions/152721/problems-with-fonts/152749
+% initexmf --mkmaps 
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{xr}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\makeatletter
+
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+\typeout{(#1)}% latexmk will find this if $recorder=0
+% however, in that case, it will ignore #1 if it is a .aux or 
+% .pdf file etc and it exists! If it doesn't exist, it will appear 
+% in the list of dependents regardless)
+%
+% Write the following if you want it to appear in \listfiles 
+% --- although not really necessary and latexmk doesn't use this
+%
+\@addtofilelist{#1}
+%
+% latexmk will find this message if #1 doesn't exist (yet)
+\IfFileExists{#1}{}{\typeout{No file #1.}}
+}\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+\externaldocument{#1}%
+\addFileDependency{#1.tex}%
+\addFileDependency{#1.aux}%
+}
+%------------End of helper code--------------
+\usepackage[hidelinks]{hyperref}
+% In your preamble
+
+% put all the external documents here!
+\myexternaldocument{new}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%--------------------------------------------------------------
+% SFR Classes
+% LATEXDIFF
+% http://techshangrila.blogspot.com.es/2013/10/installing-latexdiff-of-windows.html
+% latexdiff.pl --encoding=ascii old.tex new.tex > diff.tex
+% latexdiff.pl --encoding=ascii WaveletDetectionAccessPREV.tex WaveletDetectionAccess.tex > diff.tex
+%latexdiff --encoding=ascii WaveletDetectionAccessPREV.tex WaveletDetectionAccess.tex > WaveletDetectionAccessMarkedChanges.tex
+%\documentclass[10pt,journal,compsoc]{IEEEtran} % onecolumn, 
+%-----------------------------------------------------------------------------------------------
+
+\usepackage[english, plain]{fancyref} % plain, 
+\fancyrefchangeprefix{\fancyreftablabelprefix}{table} % lo que se pone antes de la label
+\fancyrefchangeprefix{\fancyrefpartlabelprefix}{part}
+
+\newcommand{\subparagraph}{}
+\usepackage{titlesec}
+% ------------------------------------------------------------------------------------------------------------------------
+% Redefined commands by SPP
+% Defines a counter that increases per each "REVIEWER", "EDITOR" only formats the label but does not increase the counter
+% \customsection command MUST be invoked every time for a new REVIEWER OR EDITOR
+% ------------------------------------------------------------------------------------------------------------------------
+\newcounter{reviewercounter}
+% Define a custom variable
+\newcommand{\sectionlabel}{}
+
+\newcommand{\customsection}[1]{%
+    \ifthenelse{\equal{#1}{Editor}}{%
+        % Customize the "Editor" section format without counters
+        \titleformat{\section}
+          {\normalfont\Large\bfseries}{#1}{1em}{}
+        % Redefine the value of the custom variable
+        \renewcommand{\sectionlabel}{E}
+        \renewcommand{\thesubsection}{\sectionlabel-\arabic{subsection}}
+    }
+    {%
+        % Customize the "Reviewer" section format with counters
+        \titleformat{\section}
+          {\normalfont\Large\bfseries}{#1 \arabic{reviewercounter}}{1em}{} 
+        % Increment the reviewercounter for each "Reviewer" section
+        \stepcounter{reviewercounter}
+        % Redefine the value of the custom variable
+        \renewcommand{\sectionlabel}{R}
+        \renewcommand{\thesubsection}{\sectionlabel-\arabic{reviewercounter}.\arabic{subsection}}
+    }
+    
+    % Customize subsection and subsubsection formats for both "Editor" and "Reviewer"
+    \titleformat{\subsection}
+     {\normalfont\bfseries}{\thesubsection}{1em}{}
+    \renewcommand{\thesubsubsection}{\thesubsection-\Alph{subsubsection}}
+    \titleformat{\subsubsection}
+    {\normalfont\bfseries}{\thesubsubsection}{1em}{} 
+    % Format for figure labels
+    \renewcommand{\thefigure}{#1-\arabic{section}.\arabic{subsection}-\arabic{figure}} 
+}
+%--------------------------------------------------------------------------------------------------------------------------
+% Redefined by SPP
+% Insert the general title of the document. First argument the header, second the main title 
+\newcommand{\inserttitle}[2]{%
+    \fontfamily{ppl}\selectfont	
+	\title{\large{#1} \\ 
+		\hspace{1em} \\
+		\Huge{#2}}
+	\maketitle
+}
+%-----------------------------------------------------------------------------------------------------------------------
+
+%\usepackage{filecontents}
+\let\svbibcite\bibcite
+\def\bibcite#1#2{\svbibcite{#1}{R#2}}
+\makeatletter
+\let\svbiblabel\@biblabel
+\def\@biblabel#1{\svbiblabel{R#1}}
+\makeatother
+
+
+\newenvironment{answer}{\color{black} [Authors' response]: }
+
+\newenvironment{update}{
+	\normalfont
+	\color{black}
+	\leftskip3em
+	\rightskip3em
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+
+\input{LATEXDIFF_PACKAGES.tex}
+
+%----------------------------------------------------------------------------------------------------------------------
+\begin{document}
+
+% Insert the general title of the document. First argument the header, second the main title 
+\inserttitle{Paper ID: ``Title''}{Answers to editor and reviewers}
+
+The authors thank the editor and reviewers for their helpful suggestions in improving the article. The paper has been modified from its original version prior to the resubmission process.
+
+The updated manuscript and a version with marked changes are provided, along with detailed responses to each comment.
+
+% SECTION FOR RESPONSES TO EDITOR COMMENTARIES -------------------------------------------------------------------------
+\customsection{Editor}
+\section{}
+
+\textbf{
+Comments to the authors: \\
+} 
+
+\begin{answer}
+    The authors understand that the original version of this manuscript can be improved by following the commentaries from the Editor and Reviewers. To overcome this, some modifications have been added to the manuscript in concordance with the feedback provided.
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+    The authors recognize that the original manuscript may have confused certain details that require clarification. Therefore, the entire document has been revised to clarify the objective. 
+    
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+    An extract of this section is added below:
+
+    \begin{update}
+
+        
+    \end{update}
+   
+\end{answer}
+
+\subsection{}
+
+\begin{answer} 
+
+    \begin{update}
+        
+    \end{update}
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+    
+\end{answer}
+
+
+%% NEW SECTION FOR REVIEWER 1 
+%___________________________________________________________________________________________________
+\newpage
+\customsection{Reviewer}
+\section{}
+\textbf{
+Comments to the authors: \\
+} 
+
+\begin{answer} 
+
+\end{answer}
+
+\subsection{}
+
+\begin{answer} 
+
+
+    \begin{update}
+        
+    \end{update}
+	
+\end{answer}
+
+%----------------------------------------------------------------------------------------------------
+\subsection{}
+
+\begin{answer} 
+The authors believe that this observation is utterly important to 
+
+    \begin{update}
+        
+    \end{update}
+	
+\end{answer}
+
+%----------------------------------------------------------------------------------------------------
+\subsection{}
+
+\begin{answer} 
+
+    \begin{update}
+        
+    \end{update}
+	
+\end{answer}
+
+
+\subsection{}
+
+\begin{answer}
+
+    \begin{update}
+       
+    \end{update}
+
+\end{answer}
+
+
+%% NEW SECTION FOR REVIEWER 2 
+%-------------------------------------------------------------------------------------------------------------------
+\newpage
+\customsection{Reviewer}
+\section{}
+\textbf{Comments to the authors:\\}
+\begin{answer}
+The authors appreciate the thorough revision of our work and welcome any comments aimed at improving the quality of this research. 
+  
+\end{answer}
+
+%----------------------------------------------------------------------------------------------------
+\subsection{}
+
+\begin{answer} 
+
+
+    \begin{update}
+    
+    \end{update}
+	
+\end{answer}
+
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+        
+    \end{update}
+
+\end{answer}
+
+
+\subsection{}
+
+\begin{answer}
+
+\end{answer}
+
+
+\subsection{}
+
+\begin{answer}
+
+    \begin{update}
+        
+    \end{update}
+
+\end{answer}
+
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+        
+    \end{update}
+
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+        
+    \end{update}
+
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+        
+    \end{update}
+
+\end{answer}
+
+\subsection{}
+ 
+\begin{answer}
+
+
+    \begin{update}
+        
+    \end{update}   
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+        
+
+    \end{update}
+\end{answer}
+
+\subsection{}
+
+\begin{answer}
+
+
+    \begin{update}
+       
+    \end{update}
+\end{answer}
+
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------
+% INSERT BIBLIOGRAPHY
+
+    \bibliographystyle{ieeetr}
+    \bibliography{Bib} 
+
+\end{document}

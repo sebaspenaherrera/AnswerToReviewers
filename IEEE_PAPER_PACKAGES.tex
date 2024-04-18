@@ -1,0 +1,152 @@
+\usepackage[latin1]{inputenc}
+\usepackage[spanish, english]{babel}
+
+%--------------------------------
+%\usepackage{subcaption}
+
+
+\usepackage{url}
+
+\usepackage{graphics,graphicx} %paquetes grÃ¯Â¿Â½ficos estÃ¯Â¿Â½ndar%
+\usepackage{wrapfig} %paquete para grÃ¯Â¿Â½fica lateral%
+\usepackage[rflt]{floatflt} %figuras flotantes%
+% \begin{floatingfigure}[r]/[l]{4.5cm}
+% \end{floatingfigure}
+\usepackage{graphpap}	%comando \graphpaper en el entorno picture%
+\usepackage{graphicx}
+
+\usepackage{tabularx} % in the preamble
+\usepackage{multirow}
+
+% https://tex.stackexchange.com/questions/166790/how-can-i-get-straight-double-quotes-in-listings
+\usepackage{textcomp}
+\usepackage{listings}
+ % Para escribir piezas de cÃ¯Â¿Â½digo C, Python, etc. %
+%listings configuration
+
+\lstset{
+	language=Python, %Puede ser C, C++, Java, etc.
+	showstringspaces=false,
+	formfeed=\newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+	morekeywords={models, lambda, forms}
+	%numberstyle=\tiny, 
+	%breaklines=true,
+	backgroundcolor=\color{white},
+	%numbersep=5pt,
+	xleftmargin=.35in,
+	xrightmargin=.25in
+}
+
+\lstset{upquote=true, language=C}
+\usepackage{xcolor}
+
+
+\colorlet{punct}{red!60!black}
+%\definecolor{background}{HTML}{EEEEEE}
+\definecolor{background}{HTML}{FDFDFD}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	backgroundcolor=\color{background},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+
+
+%-------------------------------------------------------
+\usepackage{adjustbox}
+\usepackage{longtable}
+
+\usepackage[english, plain]{fancyref} % plain, 
+\fancyrefchangeprefix{\fancyreftablabelprefix}{table}
+\newcommand*{\fancyrefpartlabelprefix}{part}
+\fancyrefchangeprefix{\fancyrefpartlabelprefix}{part}
+
+
+
+%\renewcommand*{\sectionname}{Sección}
+
+
+\usepackage{enumitem}
+
+%-----------------------------------------------------------
+%\usepackage{pdfcomment}
+%\defineavatar{SFR}{color={1 0 0},author={SFR}}%
+%\usepackage[disable]{pdfcomment}
+%
+%
+%\definestyle{MyStyle}{icon=Comment,opacity=0.6,voffset=8pt,hoffset=0.965\textwidth }% Less offset
+%\definestyle{MyStyle2}{icon=Comment,opacity=0.6,voffset=8pt,hoffset=0.965\textwidth }%
+
+%------------------------------------------------------------
+\usepackage[parfill]{parskip}
+
+
+%-----------------------------------
+% https://www.sharelatex.com/blog/2013/02/16/using-latexdiff-for-marking-changes-to-tex-documents.html
+%\usepackage[options]{trackchanges} 
+%\addeditor{Sergio} 
+%\addeditor{David} 
+% https://www.sharelatex.com/blog/2013/02/16/using-latexdiff-for-marking-changes-to-tex-documents.html
+
+%---------------------------------------------------------------------------------
+%https://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf
+\usepackage{booktabs}
+
+\newlength{\tpw}
+\setlength{\tpw}{0.25ex} % top bar width
+
+\newcommand\asta{1.3} % \renewcommand{\arraystretch}{1.2}
+
+
+% Left
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\newcolumntype{M}[1]{>{\RaggedRight\hspace{0pt}}m{#1}}
+
+% Centered
+\newcolumntype{Q}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{N}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Right
+\newcolumntype{R}[1]{>{\RaggedLeft\hspace{0pt}}p{#1}}
+\newcolumntype{O}[1]{>{\RaggedLeft\hspace{0pt}}m{#1}}
+
+
+%----------------------------------
+%https://tex.stackexchange.com/questions/52351/quote-marks-are-backwards-using-texmaker-pdflatex
+%\usepackage [autostyle, english = american]{csquotes}
+%\MakeOuterQuote{"}
+
+%https://tex.stackexchange.com/questions/7735/how-to-get-straight-quotation-marks
+%\usepackage{upquote}
+%https://tex.stackexchange.com/questions/59424/cant-include-pifont
+%\usepackage{fonttable}
+
